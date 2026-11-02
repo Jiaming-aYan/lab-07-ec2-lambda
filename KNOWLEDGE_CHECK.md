@@ -12,9 +12,9 @@ Suppose your instance is running and has a public IP address, but `ssh` cannot c
 
 *Hint:* the lecture slides, and [class/07-ec2](https://github.com/ksiller/DS2022/blob/main/class/07-ec2/README.md), part [3. Launch an EC2 instance in the AWS Console + SSH](https://github.com/ksiller/DS2022/blob/main/class/07-ec2/README.md#3-launch-an-ec2-instance-in-the-aws-console--ssh-15-min) and [Troubleshooting](https://github.com/ksiller/DS2022/blob/main/class/07-ec2/README.md#troubleshooting).
 
-**Your answer:** Which path did you take in the console (service → page → tab)?
+**Your answer:** Which path did you take in the console (service â†’ page â†’ tab)?
 
-...
+I opened EC2 → Network & Security → Security Groups, selected the security group attached to my instance, and opened Inbound rules. SSH needs an inbound rule allowing TCP port 22 from my current client IP address.
 
 ## 2. Lambda: why didn't my function run?
 
@@ -24,9 +24,9 @@ Suppose you uploaded a new book to your bucket, but several minutes later MongoD
 
 *Hint:* the class demo [A Lambda function in the AWS Console](https://github.com/ksiller/DS2022/blob/main/demos/07-lambda/README.md), steps [5. Add the S3 trigger](https://github.com/ksiller/DS2022/blob/main/demos/07-lambda/README.md#5-add-the-s3-trigger) and [8. Preview: the same steps with Chalice](https://github.com/ksiller/DS2022/blob/main/demos/07-lambda/README.md#8-preview-the-same-steps-with-chalice).
 
-**Your answer:** Which path did you take in the console (service → page → tab)?
+**Your answer:** Which path did you take in the console (service â†’ page â†’ tab)?
 
-...
+I opened Lambda → Functions → book-analyzer-dev-analyze_new_book → Configuration → Triggers. The S3 trigger uses public-yff8km, ObjectCreated events, and the .txt suffix.
 
 ## 3. Lambda: where do I find the error?
 
@@ -36,9 +36,9 @@ Suppose the function did start, but MongoDB still has no document for the book. 
 
 *Hint:* [Part 2, Step 7](README.md#step-7-upload-a-new-book) in the README, and the class demo [A Lambda function in the AWS Console](https://github.com/ksiller/DS2022/blob/main/demos/07-lambda/README.md), step [7. Check the CloudWatch logs](https://github.com/ksiller/DS2022/blob/main/demos/07-lambda/README.md#7-check-the-cloudwatch-logs).
 
-**Your answer:** Which path did you take in the console (service → page → tab)?
+**Your answer:** Which path did you take in the console (service â†’ page â†’ tab)?
 
-...
+I opened Lambda → Functions → book-analyzer-dev-analyze_new_book → Monitor → View CloudWatch logs, then opened the log stream containing the successful upload run. The successful run reports pg74.txt: 74383 words.
 
 ## 4. EC2 or Lambda: a backlog or new uploads?
 
@@ -54,4 +54,4 @@ For comparison, typical times in this lab:
 
 **Your answer:**
 
-...
+Case A: I would use EC2 for a one-time batch over the 5,000 books already in the bucket, then terminate the instance when the batch finishes. Case B: I would use an S3-triggered Lambda function so each new upload is processed promptly, without paying for an idle server between uploads.
